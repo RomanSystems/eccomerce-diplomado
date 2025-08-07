@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+// src/app/app.component.ts
+import { ChangeDetectionStrategy,Component, OnInit } from '@angular/core';
+import {NgFor} from '@angular/common';
+import { MotosService } from './services/motos.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [NgFor],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
-  title = 'ecommerce-diplomado';
+export class AppComponent implements OnInit {
+  motos: any[] = [];
+
+  constructor(private motosService: MotosService) {}
+
+  ngOnInit(): void {
+    this.motosService.getMotos().subscribe((response) => {
+      this.motos = response.listMotos;
+    });
+  }
 }
