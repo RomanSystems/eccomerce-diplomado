@@ -1,0 +1,14 @@
+<h1>Catálogo de Motos</h1>
+<div *ngFor="let moto of motos" style="margin-bottom: 40px; border-bottom: 1px solid #ccc">
+  <h2>{{ moto.nombre }} ({{ moto.modelo }})</h2>
+  <p>{{ moto.descripcion_corta }}</p>
+  <img [src]="'https://supre-official-site.s3.amazonaws.com/' + moto.url_foto" alt="{{ moto.nombre }}" width="400" />
+  <p><strong>Precio:</strong> {{ moto.precio_moto }}</p>
+  <p><strong>Marca:</strong> {{ moto.MotosMarca?.nombre_marca }}</p>
+
+  <h4>Colores disponibles:</h4>
+  <div *ngFor="let color of moto.MotosColores">
+    <img [src]="'https://supre-official-site.s3.amazonaws.com/' +color.url_foto_color_peque" [alt]="color.Colore?.nombre_color" width="80" />
+    <span>{{ color.Colore?.nombre_color }}</span>
+  </div>
+</div>
