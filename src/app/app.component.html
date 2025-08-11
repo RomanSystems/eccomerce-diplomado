@@ -1,14 +1,23 @@
-<h1>Catálogo de Motos</h1>
-<div *ngFor="let moto of motos" style="margin-bottom: 40px; border-bottom: 1px solid #ccc">
-  <h2>{{ moto.nombre }} ({{ moto.modelo }})</h2>
-  <p>{{ moto.descripcion_corta }}</p>
-  <img [src]="'https://supre-official-site.s3.amazonaws.com/' + moto.url_foto" alt="{{ moto.nombre }}" width="400" />
-  <p><strong>Precio:</strong> {{ moto.precio_moto }}</p>
-  <p><strong>Marca:</strong> {{ moto.MotosMarca?.nombre_marca }}</p>
 
-  <h4>Colores disponibles:</h4>
-  <div *ngFor="let color of moto.MotosColores">
-    <img [src]="'https://supre-official-site.s3.amazonaws.com/' +color.url_foto_color_peque" [alt]="color.Colore?.nombre_color" width="80" />
-    <span>{{ color.Colore?.nombre_color }}</span>
-  </div>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <!-- Sidenav derecho -->
+  <mat-sidenav #sidenav mode="side" position="end" class="sidenav" opened>
+    <mat-nav-list>
+      <!-- el componente carrito con productos-->
+      <app-cart></app-cart>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Contenido principal -->
+  <main class="main">
+    <!--<a [routerLink]="['/']">Principal</a>-->
+    <div class="content">
+      <router-outlet/>
+    </div>
+    <button mat-raised-button color="primary" (click)="toggleSidenav()">
+      <mat-icon fontIcon="shopping_cart"></mat-icon>
+      {{ totalProdsInCart }} ({{ totalCantProdsInCart }})
+    </button>
+  </main>
+</mat-sidenav-container>
+

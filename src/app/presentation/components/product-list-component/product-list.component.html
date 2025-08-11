@@ -1,0 +1,17 @@
+<div>
+  <h1>LISTA DE PRODUCTOS</h1>
+</div>
+<input
+  type="text"
+  [(ngModel)]="search"
+  placeholder="Buscar productos..."
+/>
+<div class="lista-tarjetas">
+  @for (item of filteredProducts; track trackById) {
+    <app-product-card
+      [item]="item" class="tarjeta"
+      (click)="goToDetail(item.id)"
+      (addedToCart)="cartItemAdd($event)">
+    </app-product-card>
+  }
+</div>

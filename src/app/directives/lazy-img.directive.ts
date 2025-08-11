@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2
-} from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appLazyImg]'
@@ -12,7 +6,8 @@ import {
 export class LazyImgDirective implements OnInit {
   @Input() appLazyImg!: string;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) {
+  }
 
   ngOnInit(): void {
     const obs = new IntersectionObserver(([entry], observer) => {
